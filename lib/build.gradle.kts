@@ -21,6 +21,9 @@ repositories {
 dependencies {
     // Use JUnit test framework.
     testImplementation("junit:junit:4.13.2")
+    implementation("com.google.flogger:flogger:0.8")
+    implementation("com.google.flogger:flogger-system-backend:0.8")
+    implementation("com.google.guava:guava:33.1.0-android")
 }
 
 tasks.register("generateFakeSources") {
@@ -72,7 +75,7 @@ publishing {
     publications {
         create<MavenPublication>("release") {
             groupId = "${project.properties["hmsSdkGroup"]}"
-            artifactId = "effectssdk"
+            artifactId = "effects-sdk"
             version = "${project.properties["EFFECTS_SDK_LIBRARY_VERSION_NAME"]}"
 
             artifact("../effects.aar")
