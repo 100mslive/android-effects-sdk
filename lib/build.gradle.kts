@@ -100,7 +100,7 @@ publishing {
                 licenses {
                     license {
                         name.set("Effects Sdk Licence")
-                        url.set("https://docs.byteplus.com/en/docs/legal/docs-terms-of-service")
+                        url.set("https://github.com/100mslive/android-effects-sdk/blob/main/license/LICENSE")
                     }
                 }
                 developers {
