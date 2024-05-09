@@ -1,0 +1,30 @@
+name: Publish to Maven Central
+
+on:
+  release:
+    types: [ published ]
+  workflow_dispatch:
+
+jobs:
+  deploy-to-maven-central:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: gradle
+
+
+    - name: Decrypt the artefact signing key
+      run: gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.ANDROID_SONATYPE_PRIVATE_KEY_DECRYPT_PASSWORD }}" --output secrets/secring.gpg secrets/secring.gpg.gpg
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Deploy to Maven Central live.100ms (Sonatype)
+      run: ./gradlew clean publishToSonatype closeAndReleaseSonatypeStagingRepository -PhmsSdkGroup="live.100ms" -PHMS_ANDROID_SDK_COMMON_VERSION_NAME="${{github.ref_name}}" -PossrhUsername="AniketKadam100ms" -PossrhPassword="${{ secrets.ANDROID_SONATYPE_PASSWORD}}" -Psigning.keyId="C3C9ECD4" -Psigning.password="${{ secrets.ANDROID_SONATYPE_PRIVATE_KEY_SIGNING_PASSWORD }}"
