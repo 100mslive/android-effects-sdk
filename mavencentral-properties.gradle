@@ -6,7 +6,7 @@ def getPropertyValue(String propertyName) {
 
 // Default values
 def rootExt = rootProject.ext
-rootExt["signing.keyId"] = '1E9B5612'
+rootExt["signing.keyId"] = 'D5D53C52'
 rootExt["sonatypeStagingProfileId"] = 'ossrh'
 
 // Set properties either from a global properties file or environment parameters

@@ -79,7 +79,7 @@ publishing {
 
             // Only run signing/javadoc/sources for sonatype builds, which we judge by seeing if the group is is com.github.100mslive
             
-            if(groupId != "com.github.100mslive") {
+            
                 
                 artifact(tasks["fakeSources"])
                 artifact(tasks["fakeJavadoc"])
@@ -91,7 +91,7 @@ publishing {
                     sign(configurations.archives.get())
                 }
 
-            }
+            
 
             pom {
                 name.set("Effects Sdk")
