@@ -6,3 +6,6 @@ lib/build
 
 secrets/private.pgp
 *.asc
+
+local.sh
+secrets/secring.gpg
